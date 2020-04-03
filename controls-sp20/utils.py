@@ -13,6 +13,8 @@ class Simulator(object):
                  v_star,
                  drive_straight_left,
                  drive_straight_right,
+                 k_left,
+                 k_right,
                  offset=0,
                  sim_length=10,
                  d0=(0, 0),
@@ -48,13 +50,13 @@ class Simulator(object):
             else:
                 try:
                     u = np.array([
-                        drive_straight_left(v_star, delta),
-                        drive_straight_right(v_star, delta)
+                        drive_straight_left(v_star, delta, k_left),
+                        drive_straight_right(v_star, delta, k_right)
                     ])
                 except TypeError:
                     u = np.array([
-                        drive_straight_left(v_star),
-                        drive_straight_right(v_star)
+                        drive_straight_left(v_star, k=k_left),
+                        drive_straight_right(v_star, k=k_right)
                     ])
             # Saturate inputs
             u = np.minimum(np.maximum(0, u), 255)
@@ -102,6 +104,8 @@ def two_sims(titles,
              v_star,
              drive_straight_left,
              drive_straight_right,
+             k_left,
+             k_right,
              offset=0,
              sim_length=10,
              d0=(0, 0),
@@ -112,6 +116,8 @@ def two_sims(titles,
         v_star,
         drive_straight_left,
         drive_straight_right,
+        k_left,
+        k_right,
         offset=offset,
         sim_length=sim_length,
         d0=d0,
@@ -126,6 +132,8 @@ def two_sims(titles,
         v_star,
         drive_straight_left,
         drive_straight_right,
+        k_left,
+        k_right,
         offset=offset,
         sim_length=sim_length,
         d0=d0,
@@ -146,7 +154,7 @@ def find_closest_index(arr, val):
 
 
 def find_jolt(filename="data_coarse.txt"):
-    data = np.genfromtxt("data_coarse.txt", dtype=np.uint, delimiter=",")
+    data = np.genfromtxt(filename, dtype=np.uint, delimiter=",")
 
     # Compute velocity from distances
     vleft = data[:, 1]
