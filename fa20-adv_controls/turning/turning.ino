@@ -18,7 +18,6 @@
 #define PUSH_START                  PUSH1
 
 #define SAMPLING_INTERVAL           100
-int sample_lens[4] = {0};
 
 // Operation modes
 #define MODE_LISTEN                 0
@@ -35,6 +34,7 @@ int sample_lens[4] = {0};
 boolean loop_mode = MODE_DRIVE;
 int drive_mode;
 int program_count;
+int sample_lens[NUM_COMMANDS] = {0};
 
 int step_num = 0;
 volatile boolean do_loop = 0; // timer signal to increment timestep
@@ -140,7 +140,7 @@ void setup(void) {
   pinMode(RED_LED, OUTPUT);
   pinMode(GREEN_LED, OUTPUT);
 
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < NUM_COMMANDS; i++) {
     sample_lens[i] = run_times[i] / SAMPLING_INTERVAL;
   }
 
@@ -206,7 +206,7 @@ void loop(void) {
     // Counter for how many times loop is executed since entering DRIVE MODE
     step_num++;
 
-    if (step_num == sample_lens[drive_mode]) {
+    if (step_num == sample_lens[program_count]) {
       // Completely stop and go back to listen MODE after 3 seconds
       start_listen_mode();
     }
