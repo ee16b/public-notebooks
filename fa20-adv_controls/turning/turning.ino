@@ -149,6 +149,7 @@ void setup(void) {
   reset_blinker();
   setTimer(); // Set timer for timestep
   program_count = 0;
+  drive_mode = drive_modes[0];
   start_drive_mode();
 }
 
@@ -158,6 +159,7 @@ void loop(void) {
   if (program_count == NUM_COMMANDS) {
     if (!digitalRead(PUSH_START)) {
       program_count = 0;
+      drive_mode = drive_modes[0];
       start_drive_mode();
     }
     else {
@@ -168,8 +170,8 @@ void loop(void) {
     // In the integration phase of the project, this section will listen
     // to the microphone and switch to the specified mode.
     // For now, we simply cycle through them.
-    drive_mode = drive_modes[program_count];
     program_count++;
+    drive_mode = drive_modes[program_count];
 
     start_drive_mode();
   }
