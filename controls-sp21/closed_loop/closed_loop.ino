@@ -11,9 +11,9 @@
 #include <MspFlash.h>
 
 #define LEFT_MOTOR                  P2_0
-#define LEFT_ENCODER                P6_1
+#define LEFT_ENCODER                P6_2
 #define RIGHT_MOTOR                 P1_5
-#define RIGHT_ENCODER               P6_2
+#define RIGHT_ENCODER               P6_3
 
 #define RUN_TIME                    (20*1000)
 #define SAMPLING_INTERVAL           100
