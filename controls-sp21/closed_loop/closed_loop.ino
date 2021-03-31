@@ -19,6 +19,7 @@
 #define SAMPLING_INTERVAL           100
 #define SAMPLE_LEN                  (RUN_TIME/SAMPLING_INTERVAL)
 #define WRITE                       1
+#define PUSH_START                  PUSH1
 
 #define JOLT_STEPS                  2
 
@@ -98,10 +99,15 @@ void setup(void) {
   pinMode(RIGHT_ENCODER, INPUT);
   pinMode(RED_LED, OUTPUT);
   pinMode(GREEN_LED, OUTPUT);
+  pinMode(PUSH_START, INPUT_PULLUP);
 
 
   write_pwm(0, 0); // Turn off motors
   delay(2000); // Wait 2 seconds to put down car
+  
+  while (digitalRead(PUSH_START) && WRITE) {
+
+  }
   reset_blinker(); // Blink lights to indicate car is running
   setTimer(); // Set timer for timestep
 }
