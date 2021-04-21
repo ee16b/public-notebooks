@@ -118,7 +118,7 @@ float delta_ss = ;
 int run_times[NUM_COMMANDS] = {8000, 12600, 8000, 12600}; // length of commands roughly in ms
 int drive_modes[NUM_COMMANDS] = {DRIVE_STRAIGHT, DRIVE_LEFT, DRIVE_STRAIGHT, DRIVE_RIGHT}; // commands: [DRIVE_STRAIGHT, DRIVE_LEFT, DRIVE_RIGHT]
 
-float delta_reference(int k) {
+float delta_reference(int n) {
   // YOUR CODE HERE
   float delta = ;
   if (drive_mode == DRIVE_RIGHT) {
