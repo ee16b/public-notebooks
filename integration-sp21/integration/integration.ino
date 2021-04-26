@@ -450,7 +450,7 @@ void setTimer(boolean mode) {
     TB0CCR0 = (unsigned int) (25000*ADC_TIMER_MS);
     TB0CCTL0 = CCIE;
     __bis_SR_register(GIE);
-    TB0CTL = TASSEL_1 + MC_1 + TACLR + ID_0;
+    TB0CTL = TASSEL_2 + MC_1 + TACLR + ID_0;
   }
   else if (mode == MODE_DRIVE) {
     TB0CCR0 = (unsigned int) (32.768*SAMPLING_INTERVAL); // set the timer based on 32kHz clock
@@ -471,7 +471,7 @@ __interrupt void Timer0_B0_ISR(void) {
       re_pointer += 1;
     }
   }
-  else if (loop_mode == MODE_DRIVE) {
+  else if (timer_mode == MODE_DRIVE) {
     do_loop = 1;
   }
 }
