@@ -61,7 +61,7 @@ void loop()
 
   /* SECTION B:
      Comment this section to turn the 3-bit DAC into a 4-bit DAC */
-  // Range of values is 0 to 7 for 4 bit DAC
+  // Range of values is 0 to 7 for 3 bit DAC
   if (val == 7)
     added = -1;
   /* END SECTION B */
