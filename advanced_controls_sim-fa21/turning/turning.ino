@@ -79,7 +79,7 @@ float beta_left = -3.996;
 float beta_right =  -3.392;
 
 // Use the following v_star value, do not need to change this
-float v_star = 202.43;
+float v_star = 202.343;
 
 // PWM inputs to jolt the car straight
 int left_jolt = 200;
@@ -144,8 +144,7 @@ float delta_reference(int n) {
 #define STRAIGHT_RADIUS             INFINITY
 
 float straight_correction(int n) {
-  // YOUR CODE HERE
-  return ;
+  return 0;
 }
 
 /*---------------------------*/
